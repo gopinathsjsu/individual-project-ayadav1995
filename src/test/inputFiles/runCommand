@@ -1,0 +1,2 @@
+ mvn exec:java -"Dexec.mainClass"="test.RunClient" -"Dexec.args"="src\test\inputFiles\BookingRequests.csv src\t
+est\inputFiles\FlightDetails.csv src\test\inputFiles\BookedFlights.csv src\test\inputFiles\Output.txt"

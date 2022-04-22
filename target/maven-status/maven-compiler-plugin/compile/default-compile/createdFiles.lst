@@ -1,0 +1,7 @@
+bean\FlightDetails.class
+utilities\CsvHandler.class
+Controller\FlightDetailsController.class
+test\RunClient.class
+utilities\FileParser.class
+bean\BookingRequest.class
+bean\BookingDetails.class

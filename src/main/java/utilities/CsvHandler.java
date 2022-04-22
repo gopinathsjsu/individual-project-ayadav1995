@@ -32,7 +32,7 @@ public class CsvHandler {
 				
 				if(!line.startsWith("Category")) {
 
-					FlightDetails flight = new FlightDetails();
+					FlightDetails flight = null;
 					String[] flightDetails = line.split(splitOperator);
 					
 					try {
@@ -40,6 +40,22 @@ public class CsvHandler {
 						// will call the initializeFlights method from flightController here
 						// that class will be a singleton class and as each time the method is called we will
 						// update the same object of
+						if(!list.isEmpty()){
+							for(FlightDetails f : list){
+
+								if(f.getFlightNum() == flightDetails[1]){
+									flight = f;
+									break;
+								}else{
+									flight = new FlightDetails();
+								}
+							}
+						}else{
+							flight = new FlightDetails();
+						}
+
+
+
 
 						if(flightDetails[0]== "Economy"){
 
