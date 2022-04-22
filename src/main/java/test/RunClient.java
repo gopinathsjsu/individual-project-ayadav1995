@@ -1,6 +1,8 @@
 package test;
 
 import Controller.FlightDetailsController;
+import bean.BookingDetails;
+import bean.BookingRequest;
 import bean.FlightDetails;
 import utilities.CsvHandler;
 import utilities.FileParser;
@@ -34,14 +36,25 @@ public class RunClient {
 
             List<FlightDetails> inputList = handler.handleFlightDetailsFile(flightDetailsFilePath);
 
+            //just to test if read from CSV works
             for(FlightDetails f : inputList){
                 System.out.println(f.getArrivalCity());
             }
 
+            //    call methods to initialise the data for the files using the map
             FlightDetailsController flightDetailsController = new FlightDetailsController();
             flightDetailsController.initializeFlights(inputList);
+
+            List<BookingRequest> bookingRequests = handler.handleBookingRequestsFile(bookingRequestsFilePath);
+
+            List<BookingDetails> bookingDetails = flightDetailsController.validateBooking(bookingRequests);
+
+
+
+
         }
-//         call methods to initialise the data for the files using the map
+
+
 
     }
 

@@ -2,7 +2,6 @@ package bean;
 
 public class FlightDetails {
 
-
     private String flightNum;
     private String departureCity;
     private String arrivalCity;

@@ -1,5 +1,7 @@
 package Controller;
 
+import bean.BookingDetails;
+import bean.BookingRequest;
 import bean.FlightDetails;
 
 import java.util.ArrayList;
@@ -9,14 +11,15 @@ import java.util.List;
 
 public class FlightDetailsController {
 
-    List<FlightDetails> flights;
+//    List<FlightDetails> flights;
+    HashMap<String , HashMap<String,List<Integer> >> flights;
 
     public void initializeFlights(List<FlightDetails> flightDetailsList){
 
 
         // we will take out the same flight and store the data as
         // <flightNumber , <map of seatCategory and a list of availableSeats,cost> >
-        HashMap<String , HashMap<String,List<Integer> >> flights = new HashMap<>() ;
+         flights = new HashMap<>() ;
 
 
         for(FlightDetails f : flightDetailsList){
@@ -45,6 +48,26 @@ public class FlightDetailsController {
     // the number of available seats by 1
 
 
+    public List<BookingDetails> validateBooking(List<BookingRequest> bookingRequests){
+
+        List<BookingDetails> bookingDetails = new ArrayList<>();
+
+
+        if(!bookingRequests.isEmpty()){
+
+            for(BookingRequest bookingRequest : bookingRequests){
+
+                if(flights.containsKey(bookingRequest.getFlightNum())){
+
+                }
+
+            }
+
+        }
+
+
+        return bookingDetails;
+    }
 
 
 }

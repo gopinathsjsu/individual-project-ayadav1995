@@ -124,22 +124,19 @@ public class CsvHandler {
 			br = new BufferedReader(new FileReader(bookingRequestFilePath));
 			while ((line = br.readLine()) != null) {
 
-				if(!line.startsWith("CardNumber")) {
+				if(!line.startsWith("BookingName")) {
 
 					BookingRequest booking = new BookingRequest();
 					String[] bookingRequest = line.split(splitOperator);
 
 					try {
 
-						// will call the initializeFlights method from flightController here
-						// that class will be a singleton class and as each time the method is called we will
-						// update the same object of
-
-
-//						card.setCardNumber(Long.parseLong(cardDetails[0]));
-//						card.setExpirationDate(simpleDateFormat.parse(cardDetails[1]));
-//						card.setNameOfCardholder(cardDetails[2]);
-
+						booking.setName(bookingRequest[0]);
+						booking.setFlightNum(bookingRequest[1]);
+						booking.setCategory(bookingRequest[2]);
+						booking.setNumberOfSeats(Integer.parseInt(bookingRequest[3]));
+						booking.setCardNumber(Long.parseLong(bookingRequest[4]));
+//
 					}
 					catch(NumberFormatException nfe) {
 
