@@ -8,7 +8,9 @@ public class BookingDetails {
     private int numberOfSeats;
     private int totalPrice;
 
+    public BookingDetails() {
 
+    }
     public BookingDetails(String name, String flightNum, String category, int numberOfSeats, int totalPrice) {
         this.name = name;
         this.flightNum = flightNum;
