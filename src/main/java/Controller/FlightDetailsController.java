@@ -1,13 +1,13 @@
 package Controller;
 
+import Factory.CreditCard;
 import bean.BookingDetails;
 import bean.BookingRequest;
+import bean.CardDetails;
 import bean.FlightDetails;
+import creditCardhandler.ChainHandler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class FlightDetailsController {
 
@@ -111,7 +111,15 @@ public class FlightDetailsController {
 
                 //after calculating the cost we need to check if the card number is valid
                 // we will call the cardValidation methods from here
-                if(true){
+                CardDetails card = new CardDetails();
+                card.setCardNumber(bookingRequest.getCardNumber());
+                card.setExpirationDate(new Date(""));
+                card.setNameOfCardholder("John Doe");
+                ChainHandler chain = new ChainHandler();
+                boolean isValid  = chain.handleChain(card);
+
+
+                if(isValid){
                     //After the card validation we will add the booking details in the booking details object
                     bookingDetails.setFlightNum(bookingRequest.getFlightNum());
                     bookingDetails.setCategory(bookingRequest.getCategory());
@@ -121,7 +129,6 @@ public class FlightDetailsController {
 
                     // after the booking is made we need to reduce the booked number of seats from the category for that flight
                     flights.get(bookingRequest.getFlightNum()).get(category).set(0,flights.get(bookingRequest.getFlightNum()).get(category).get(0) -bookingDetails.getNumberOfSeats() ) ;
-
 
 
 

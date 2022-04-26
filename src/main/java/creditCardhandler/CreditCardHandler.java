@@ -1,9 +1,10 @@
 package creditCardhandler;
 
 import Factory.CreditCard;
+import bean.BookingRequest;
 
 public interface CreditCardHandler {
 
-	CreditCard handleNumber(long ccNumber);
+	boolean handleNumber(long ccNumber);
 	void setNext(CreditCardHandler next);
 }

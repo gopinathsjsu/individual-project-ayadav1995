@@ -2,7 +2,6 @@ package creditCardhandler;
 
 import bean.CardDetails;
 import Factory.CreditCard;
-import bean.CardDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +10,9 @@ import java.util.List;
 public class ChainHandler {
 	
 	
-	public List<CreditCard> handleChain(List<CardDetails> list) {
+	public boolean handleChain(CardDetails cardDetails) {
 		
-		List<CreditCard> result = new ArrayList<CreditCard>();
+		boolean isValid = false;
 		
 		AmericanExpressCardHandler ah = new AmericanExpressCardHandler();
 		DiscoverCardHandler dh = new DiscoverCardHandler();
@@ -24,11 +23,11 @@ public class ChainHandler {
 		dh.setNext(mh);
 		mh.setNext(vh);
 		
-		for(CardDetails card : list) {
-			result.add(ah.handleNumber(card.getCardNumber()));	
-		}
+
+			ah.handleNumber(cardDetails.getCardNumber());
+
 		
-		return result;
+		return isValid;
 	}
 
 }

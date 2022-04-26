@@ -8,22 +8,23 @@ public class MasterCardHandler implements CreditCardHandler {
 
 	public CreditCardHandler next = null;
 	
-	public CreditCard handleNumber(long ccNumber) {
+	public boolean handleNumber(long ccNumber) {
 		
 		String temp = String.valueOf(ccNumber);
 		CreditCard card = null;
+		boolean isValid= false;
 		
 		if(temp != null && temp.length() == 16 && temp.charAt(0) == '5' && temp.charAt(1) >= '1' && temp.charAt(1) <= '5'){
-			card = new MasterCard(ccNumber);
+			isValid = true;
 		}
 		else if(next != null) {
-			card = next.handleNumber(ccNumber);
+			isValid = next.handleNumber(ccNumber);
 		}
 		else {
 			card = new InvalidCreditCard(ccNumber);
 		}
 		
-		return card;
+		return isValid;
 		
 	}
 

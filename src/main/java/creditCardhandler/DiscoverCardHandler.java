@@ -8,22 +8,24 @@ public class DiscoverCardHandler implements CreditCardHandler {
 
 	public CreditCardHandler next = null;
 	
-	public CreditCard handleNumber(long ccNumber) {
+	public boolean handleNumber(long ccNumber) {
 		
 		String temp = String.valueOf(ccNumber);
 		CreditCard card = null;
+		boolean isValid = false;
 		
 		if(temp != null && temp.length() == 16 && temp.substring(0,4).equals("6011")){
 			card = new DiscoverCard(ccNumber);
+			isValid = true;
 		}
 		else if(next != null) {
-			card = next.handleNumber(ccNumber);
+			isValid = next.handleNumber(ccNumber);
 		}
 		else {
 			card = new InvalidCreditCard(ccNumber);
 		}
 		
-		return card;
+		return isValid;
 		
 	}
 
