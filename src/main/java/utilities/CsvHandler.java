@@ -57,16 +57,16 @@ public class CsvHandler {
 
 
 
-						if(flightDetails[0]== "Economy"){
+						if(flightDetails[0].equalsIgnoreCase("Economy")){
 
 							flight.setEcoSeats(Integer.parseInt(flightDetails[2]));
 							flight.setEcoSeatsCost(Integer.parseInt(flightDetails[3]));
 
-						}else if(flightDetails[0]== "Business"){
+						}else if(flightDetails[0].equalsIgnoreCase ("Business")){
 							flight.setBusSeats(Integer.parseInt(flightDetails[2]));
 							flight.setBusSeatsCost(Integer.parseInt(flightDetails[3]));
 
-						}else if(Objects.equals(flightDetails[0], "Premium Economy")){
+						}else if(flightDetails[0].equalsIgnoreCase("Premium Economy") ){
 							flight.setPecoSeats(Integer.parseInt(flightDetails[2]));
 							flight.setPecoSeatsCost(Integer.valueOf(flightDetails[3]));
 						}

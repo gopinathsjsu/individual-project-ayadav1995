@@ -103,7 +103,7 @@ public class FlightDetailsController {
 
         if(flights.get(bookingRequest.getFlightNum()).containsKey(category)) {
 //                                  int availableSeats = flights.get(bookingRequest.getFlightNum()).get("Economy").get(0);
-            if(flights.get(bookingRequest.getFlightNum()).get(category).get(0) <= bookingRequest.getNumberOfSeats()){
+            if(flights.get(bookingRequest.getFlightNum()).get(category).get(0) >= bookingRequest.getNumberOfSeats()){
 
                 // now that flight is valid and has enough seats we calculate the total cost
                 bookingDetails.setTotalPrice(flights.get(bookingRequest.getFlightNum()).get(category).get(1) * bookingRequest.getNumberOfSeats() );
@@ -113,7 +113,7 @@ public class FlightDetailsController {
                 // we will call the cardValidation methods from here
                 CardDetails card = new CardDetails();
                 card.setCardNumber(bookingRequest.getCardNumber());
-                card.setExpirationDate(new Date(""));
+//                card.setExpirationDate(new Date(2020,04,26));
                 card.setNameOfCardholder("John Doe");
                 ChainHandler chain = new ChainHandler();
                 boolean isValid  = chain.handleChain(card);

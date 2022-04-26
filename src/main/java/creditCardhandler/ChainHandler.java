@@ -24,7 +24,7 @@ public class ChainHandler {
 		mh.setNext(vh);
 		
 
-			ah.handleNumber(cardDetails.getCardNumber());
+		isValid = ah.handleNumber(cardDetails.getCardNumber());
 
 		
 		return isValid;
