@@ -61,6 +61,13 @@ public class RunClient {
                 System.out.println(b.getTotalPrice());
             }
 
+            handler.writeBookedFlightsFile(bookingDetails, bookedFlightsFilePath);
+
+           List<String> invalidBookings= flightDetailsController.getInvalidBookings();
+
+            handler.writeInvalidBookingsFile(invalidBookings, incorrectBookingsFilePath);
+
+
 
 
 

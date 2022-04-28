@@ -1,2 +1,3 @@
-Please enter correct booking details for John: invalid flight number
-Please enter correct booking details for Sierra: invalid card number
+Please enter correct booking details for Sierra : invalid card number
+Please enter correct booking details for John : invalid flight number
+Please enter correct booking details for Richard : seats not available

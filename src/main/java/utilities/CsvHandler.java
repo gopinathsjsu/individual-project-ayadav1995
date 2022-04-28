@@ -1,6 +1,7 @@
 package utilities;
 
 
+import Factory.CreditCard;
 import bean.BookingDetails;
 import bean.BookingRequest;
 import bean.FlightDetails;
@@ -168,6 +169,75 @@ public class CsvHandler {
 
 		return list;
 	}
+
+	public void writeBookedFlightsFile(List<BookingDetails> list, String opFilePath) {
+
+//		String csvOpFile = Constants.outputDirPath + opFileName;
+
+		try {
+
+			FileWriter writer = new FileWriter(opFilePath);
+			BufferedWriter bwr = new BufferedWriter(writer);
+
+			bwr.append("Booking name");
+			bwr.append(',');
+			bwr.append("Flight number");
+			bwr.append(',');
+			bwr.append("Category");
+			bwr.append(',');
+			bwr.append("Number of seats booked");
+			bwr.append(',');
+			bwr.append("Total price");
+			bwr.append("\n");
+
+
+			for(BookingDetails booking : list) {
+
+				bwr.append(booking.getName());
+				bwr.append(',');
+				bwr.append(booking.getFlightNum());
+				bwr.append(',');
+				bwr.append(booking.getCategory());
+				bwr.append(',');
+				bwr.append(String.valueOf(booking.getNumberOfSeats()));
+				bwr.append(',');
+				bwr.append(String.valueOf(booking.getTotalPrice()));
+				bwr.append("\n");
+
+			}
+
+			bwr.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void writeInvalidBookingsFile(List<String> list, String opFilePath) {
+
+//		String csvOpFile = Constants.outputDirPath + opFileName;
+
+		try {
+
+			FileWriter writer = new FileWriter(opFilePath);
+			BufferedWriter bwr = new BufferedWriter(writer);
+
+			for(String booking : list) {
+
+				bwr.append(booking);
+				bwr.append("\n");
+
+			}
+
+			bwr.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 
 }

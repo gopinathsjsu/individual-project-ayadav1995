@@ -13,6 +13,7 @@ public class FlightDetailsController {
 
 //    List<FlightDetails> flights;
     HashMap<String , HashMap<String,List<Integer> >> flights;
+    HashMap<BookingRequest, String> invalidBookings = new HashMap<>();
 
     public void initializeFlights(List<FlightDetails> flightDetailsList){
 
@@ -51,7 +52,7 @@ public class FlightDetailsController {
     public List<BookingDetails> validateBooking(List<BookingRequest> bookingRequests){
 
         List<BookingDetails> bookingDetailsist = new ArrayList<>();
-        boolean isBookingValid = true;
+//        boolean isBookingValid = true;
 
         if(!bookingRequests.isEmpty()){
 
@@ -72,23 +73,27 @@ public class FlightDetailsController {
                         }
 
                        }
-                    if(bookingRequest.getCategory().equals("Premium Economy")){
+                    else if(bookingRequest.getCategory().equals("Premium Economy")){
                         bookingDetails = validateBooking(bookingRequest, "Premium Economy");
 
                         if(bookingDetails != null){
                             bookingDetailsist.add(bookingDetails);
                         }
                     }
-                    if(bookingRequest.getCategory().equals("Business")){
+                    else if(bookingRequest.getCategory().equals("Business")){
                         bookingDetails = validateBooking(bookingRequest, "Business");
 
                         if(bookingDetails != null){
                             bookingDetailsist.add(bookingDetails);
                         }
+                    }else{
+//                        isBookingValid = false;
+                        invalidBookings.put(bookingRequest,"invalid category");
                     }
 
                 }else
-                    isBookingValid = false;
+//                    isBookingValid = false;
+                    invalidBookings.put(bookingRequest,"invalid flight number");
 
             }
 
@@ -133,18 +138,38 @@ public class FlightDetailsController {
 
 
                 }else{
+                    invalidBookings.put(bookingRequest,"invalid card number");
                     return null;
                 }
 
 
             }else{
+                invalidBookings.put(bookingRequest,"seats not available");
                 return null;
             }
 
+        }else{
+            invalidBookings.put(bookingRequest,"invalid category");
         }
 
         return bookingDetails;
     }
+
+    public List<String> getInvalidBookings(){
+        List<String> invalidBookingList= new ArrayList<>();
+
+
+        Iterator it = invalidBookings.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            BookingRequest b = (BookingRequest)pair.getKey();
+            invalidBookingList.add("Please enter correct booking details for "+ b.getName() + " : " + pair.getValue());
+
+        }
+
+        return invalidBookingList;
+    }
+
 
 
 }

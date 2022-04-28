@@ -1,4 +1,3 @@
-Booking name, flight number, Category, number of seats booked, total price
+Booking name,Flight number,Category,Number of seats booked,Total price
 Sam,SJ456,Economy,2,500
-Richard,BY110,Premium Economy,2,1000
 Anna,SJ456,Economy,1,250
