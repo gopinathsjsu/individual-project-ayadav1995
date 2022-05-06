@@ -1,7 +1,6 @@
 package creditCardhandler;
 
-import Factory.AmericanExpressCard;
-import Factory.CreditCard;
+
 import Factory.InvalidCreditCard;
 
 public class AmericanExpressCardHandler implements CreditCardHandler {
@@ -31,5 +30,6 @@ public class AmericanExpressCardHandler implements CreditCardHandler {
 	public void setNext(CreditCardHandler next) {
 		this.next = next;
 	}
+
 
 }

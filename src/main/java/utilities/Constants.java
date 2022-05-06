@@ -9,8 +9,6 @@ public class Constants {
 	public static String invalidCardType = "Invalid";
 	public static String noError = "None";
 	public static String error = "InvalidCardNumber";
-	
-	
-	
+
 	
 }

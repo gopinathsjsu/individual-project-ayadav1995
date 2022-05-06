@@ -4,13 +4,13 @@ public abstract class CreditCard {
 
 	private long cardNumber;
 	private String type;
-	private String error;
+
 
 	public CreditCard(long cardNumber, String type, String error) {
 	
 		this.cardNumber = cardNumber;
 		this.type = type;
-		this.error = error;
+
 	}
 	
 	public long getCardNumber() {
@@ -29,11 +29,5 @@ public abstract class CreditCard {
 		this.type = type;
 	}
 
-	public String getError() {
-		return error;
-	}
 
-	public void setError(String error) {
-		this.error = error;
-	}
 }

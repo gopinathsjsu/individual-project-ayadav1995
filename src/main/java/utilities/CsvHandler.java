@@ -38,9 +38,6 @@ public class CsvHandler {
 					
 					try {
 
-						// will call the initializeFlights method from flightController here
-						// that class will be a singleton class and as each time the method is called we will
-						// update the same object of
 						if(!list.isEmpty()){
 							for(FlightDetails f : list){
 
@@ -48,11 +45,13 @@ public class CsvHandler {
 									flight = f;
 									break;
 								}else{
-									flight = new FlightDetails();
+									flight = new FlightDetails.FlightDetailsBuilder().flightNum(flightDetails[1]).
+											arrivalCity(flightDetails[4]).departureCity(flightDetails[5]).build();
 								}
 							}
 						}else{
-							flight = new FlightDetails();
+							flight = new FlightDetails.FlightDetailsBuilder().flightNum(flightDetails[1]).
+									arrivalCity(flightDetails[4]).departureCity(flightDetails[5]).build();
 						}
 
 
@@ -72,11 +71,6 @@ public class CsvHandler {
 							flight.setPecoSeatsCost(Integer.valueOf(flightDetails[3]));
 						}
 
-						flight.setFlightNum(flightDetails[1]);
-						flight.setArrivalCity(flightDetails[4]);
-						flight.setDepartureCity(flightDetails[5]);
-
-						
 					}
 					catch(NumberFormatException nfe) {
 						

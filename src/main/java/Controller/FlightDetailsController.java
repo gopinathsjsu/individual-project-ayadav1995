@@ -1,6 +1,6 @@
 package Controller;
 
-import Factory.CreditCard;
+
 import bean.BookingDetails;
 import bean.BookingRequest;
 import bean.CardDetails;
@@ -11,12 +11,20 @@ import java.util.*;
 
 public class FlightDetailsController {
 
-//    List<FlightDetails> flights;
+
+    private static FlightDetailsController singleton = new FlightDetailsController();
+
+
+    private FlightDetailsController(){};
+
+    public static FlightDetailsController getInstance(){
+        return singleton;
+    }
+
     HashMap<String , HashMap<String,List<Integer> >> flights;
     HashMap<BookingRequest, String> invalidBookings = new HashMap<>();
 
     public void initializeFlights(List<FlightDetails> flightDetailsList){
-
 
         // we will take out the same flight and store the data as
         // <flightNumber , <map of seatCategory and a list of availableSeats,cost> >
@@ -25,22 +33,33 @@ public class FlightDetailsController {
 
         for(FlightDetails f : flightDetailsList){
 
-                    flights.put(f.getFlightNum(),
-                            new HashMap<String,List<Integer>>()
+            if(!flights.containsKey(f.getFlightNum())){
+                flights.put(f.getFlightNum(),
+                        new HashMap<String,List<Integer>>()
+                        {
                             {
-                                {
-                                    put("Economy",
-                                            new ArrayList<>(Arrays.asList(f.getEcoSeats(),f.getEcoSeatsCost())));
-                                    put("Premium Economy",
-                                            new ArrayList<>(Arrays.asList(f.getPecoSeats(),f.getPecoSeatsCost())));
-                                    put("Business",
-                                            new ArrayList<>(Arrays.asList(f.getBusSeats(),f.getBusSeatsCost())));
+                                put("Economy",
+                                        new ArrayList<>(Arrays.asList(f.getEcoSeats(),f.getEcoSeatsCost())));
+                                put("Premium Economy",
+                                        new ArrayList<>(Arrays.asList(f.getPecoSeats(),f.getPecoSeatsCost())));
+                                put("Business",
+                                        new ArrayList<>(Arrays.asList(f.getBusSeats(),f.getBusSeatsCost())));
 
-                                }});
+                            }});
+            }else{
+                if(f.getBusSeats()>0){
+                    flights.get(f.getFlightNum()).get("Business").set(0,f.getBusSeats());
+                }if(f.getPecoSeats()>0){
+                    flights.get(f.getFlightNum()).get("Premium Economy").set(0,f.getPecoSeats());
+                }if(f.getEcoSeats()>0){
+                    flights.get(f.getFlightNum()).get("Economy").set(0,f.getEcoSeats());
+                }
+            }
+
 
         }
+        System.out.println("");
 
-        // code to iterate over the flightDetailsList obtained from the csvHandler class and create our hashmap of flights
 
     }
 
@@ -118,8 +137,7 @@ public class FlightDetailsController {
                 // we will call the cardValidation methods from here
                 CardDetails card = new CardDetails();
                 card.setCardNumber(bookingRequest.getCardNumber());
-//                card.setExpirationDate(new Date(2020,04,26));
-                card.setNameOfCardholder("John Doe");
+
                 ChainHandler chain = new ChainHandler();
                 boolean isValid  = chain.handleChain(card);
 

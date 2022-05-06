@@ -21,6 +21,19 @@ public class FlightDetails {
         this.arrivalCity = arrivalCity;
     }
 
+    private FlightDetails(FlightDetailsBuilder flightDetails){
+
+        this.flightNum = flightDetails.flightNum;
+        this.departureCity = flightDetails.departureCity;
+        this.arrivalCity = flightDetails.arrivalCity;
+        this.ecoSeats= flightDetails.ecoSeats;
+        this.busSeats= flightDetails.busSeats;
+        this.pecoSeats= flightDetails.pecoSeats;
+        this.ecoSeatsCost= flightDetails.ecoSeatsCost;
+        this.busSeatsCost=flightDetails.busSeatsCost;
+        this.pecoSeatsCost= flightDetails.pecoSeatsCost;
+    }
+
     public String getFlightNum() {
         return flightNum;
     }
@@ -97,7 +110,70 @@ public class FlightDetails {
 
 
 
+    // Implementing Builder Design Pattern
+    public static class FlightDetailsBuilder{
+        private String flightNum;
+        private String departureCity;
+        private String arrivalCity;
+        private int ecoSeats;
+        private int busSeats;
+        private int pecoSeats;
+        private int ecoSeatsCost;
+        private int busSeatsCost;
+        private int pecoSeatsCost;
 
 
+        public FlightDetailsBuilder flightNum(String flightNum) {
+            this.flightNum = flightNum;
+            return this;
+        }
 
+        public FlightDetailsBuilder departureCity(String departureCity) {
+            this.departureCity = departureCity;
+            return this;
+        }
+
+        public FlightDetailsBuilder arrivalCity(String arrivalCity) {
+            this.arrivalCity = arrivalCity;
+            return this;
+        }
+
+        public FlightDetailsBuilder ecoSeats(int ecoSeats) {
+            this.ecoSeats = ecoSeats;
+            return this;
+        }
+
+        public FlightDetailsBuilder busSeats(int busSeats) {
+            this.busSeats = busSeats;
+            return this;
+        }
+        public FlightDetailsBuilder pecoSeats(int pecoSeats) {
+            this.pecoSeats = pecoSeats;
+            return this;
+        }
+        public FlightDetailsBuilder ecoSeatsCost(int ecoSeatsCost) {
+            this.ecoSeatsCost = ecoSeatsCost;
+            return this;
+        }
+        public FlightDetailsBuilder busSeatsCost(int busSeatsCost) {
+            this.busSeatsCost = busSeatsCost;
+            return this;
+        }
+        public FlightDetailsBuilder pecoSeatsCost(int pecoSeatsCost) {
+            this.pecoSeatsCost = pecoSeatsCost;
+            return this;
+        }
+
+
+        public FlightDetails build(){
+            validateItem();
+            return new FlightDetails(this);
+        }
+        private void validateItem() {
+            if (this.flightNum == null ) {
+                throw new RuntimeException("Value can not be null");
+            }
+
+        }
+    }
 }

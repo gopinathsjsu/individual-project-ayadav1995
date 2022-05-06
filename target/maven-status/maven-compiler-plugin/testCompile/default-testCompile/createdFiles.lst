@@ -1,0 +1,7 @@
+tests\SingletonTest.class
+tests\VisaCardHandlerTest.class
+tests\BuilderTest.class
+tests\FlightDetailsControllerTest.class
+tests\MasterCardHandlerTest.class
+tests\AmericanExpressCardHandlerTest.class
+tests\DiscoverCardHandlerTest.class

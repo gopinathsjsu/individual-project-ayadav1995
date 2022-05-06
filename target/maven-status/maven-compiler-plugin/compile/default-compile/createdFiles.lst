@@ -1,5 +1,7 @@
+bean\FlightDetails$1.class
 bean\FlightDetails.class
 Controller\FlightDetailsController$1.class
+bean\FlightDetails$FlightDetailsBuilder.class
 creditCardhandler\CreditCardHandler.class
 Factory\AmericanExpressCard.class
 test\RunClient.class
